@@ -1,0 +1,87 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_key",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "_addr1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_addr2",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "_agreement",
+						"type": "string"
+					}
+				],
+				"name": "createContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Marriage.sol": "Marriage"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Marriage.sol": {
+			"keccak256": "0x36778f7e3a478443d1518c27014b5b60b29da247bcb2906a3cd01756d53d579e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://71faac8518645d197af0b625c73ebeac8bcb293208bee94f17a6d35f29f989cf",
+				"dweb:/ipfs/QmaBj1Cr24Qbzfji2NpYNADcNbWp8zPBYMugMG43yBh2dA"
+			]
+		},
+		"contracts/Util.sol": {
+			"keccak256": "0x8f46f23eb958260549948e03179668041fbff648f5845e83d14ca9aa3c18504c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87e1ff4b4fc4acdf5400d7654fc7dd4c35921f5b57e348ada04e8492c357c033",
+				"dweb:/ipfs/QmU2xNtCkQyQpf84L6ugQnVNrsip7AtJkmiovofFJZEYvf"
+			]
+		}
+	},
+	"version": 1
+}
