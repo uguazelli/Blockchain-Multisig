@@ -8,19 +8,84 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "getAddrsContractsMapping",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes32",
-						"name": "_key",
+						"name": "_contractNumber",
+						"type": "bytes32"
+					}
+				],
+				"name": "getDetailsByContractNumber",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address[]",
+								"name": "addrs",
+								"type": "address[]"
+							},
+							{
+								"internalType": "address[]",
+								"name": "confirmedAddrs",
+								"type": "address[]"
+							},
+							{
+								"internalType": "uint8",
+								"name": "status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint8",
+								"name": "confirmation",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "date",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "agreement",
+								"type": "string"
+							}
+						],
+						"internalType": "struct Marriage.ContractDetails",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_contractNumber",
 						"type": "bytes32"
 					},
 					{
-						"internalType": "address",
-						"name": "_addr1",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_addr2",
-						"type": "address"
+						"internalType": "address[]",
+						"name": "_addrs",
+						"type": "address[]"
 					},
 					{
 						"internalType": "uint8",
@@ -33,7 +98,7 @@
 						"type": "string"
 					}
 				],
-				"name": "createContract",
+				"name": "setContractDetails",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -67,19 +132,11 @@
 	},
 	"sources": {
 		"contracts/Marriage.sol": {
-			"keccak256": "0x36778f7e3a478443d1518c27014b5b60b29da247bcb2906a3cd01756d53d579e",
+			"keccak256": "0x114485df3a85cf477bd1f6f4eefac8a3b6e6f5e6590701bdd4720b03a8da7f14",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://71faac8518645d197af0b625c73ebeac8bcb293208bee94f17a6d35f29f989cf",
-				"dweb:/ipfs/QmaBj1Cr24Qbzfji2NpYNADcNbWp8zPBYMugMG43yBh2dA"
-			]
-		},
-		"contracts/Util.sol": {
-			"keccak256": "0x8f46f23eb958260549948e03179668041fbff648f5845e83d14ca9aa3c18504c",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://87e1ff4b4fc4acdf5400d7654fc7dd4c35921f5b57e348ada04e8492c357c033",
-				"dweb:/ipfs/QmU2xNtCkQyQpf84L6ugQnVNrsip7AtJkmiovofFJZEYvf"
+				"bzz-raw://4996d9214bcb90acfe11d05e61da7a042af765dcb3266040cad071f3f18baac0",
+				"dweb:/ipfs/QmPBwYgQfmr5BYgQjx9oE9SUEzxBSDmcrYh33jiXvoWaPN"
 			]
 		}
 	},
