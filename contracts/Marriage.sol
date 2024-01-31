@@ -4,99 +4,73 @@ pragma solidity ^0.8.22;
 
 contract Marriage {
 
-    struct ContractDetails {
-        address[] addrs;
-        address[] confirmedAddrs;
-        uint8 status; // 0-Single; 1-Married; 2-Divorced; 3-Widowed; 4-Separated; 5-Civil union; 6-Domestic partnership
-        uint8 confirmation; //0-Waiting confirmation; 1-Conrfirmed; 2-Canceled
+    struct Details{
+        address[] addresses;
+        address[] confirmed;
+        uint8 status;
         uint256 date;
         string agreement;
     }
 
-    // Initialize the struct
-    ContractDetails private contractDetails;
+    Details d;
+    
+
+    mapping(address => bytes32[]) public contractsByAddres;
+    mapping(bytes32 => Details) public detailsByContract;
 
 
-    function setContractDetails(bytes32 _contractNumber, address[] memory _addrs, uint8 _status, string memory _agreement) public{
-        
-        bool contractExists = _contractNumber != 0x0000000000000000000000000000000000000000000000000000000000000000;
+    function createContract(bytes32 _id, address[] memory _addresses, string memory _agreement ) public  {
 
-        bytes32 contractNumber;
+        if(_id == 0x0000000000000000000000000000000000000000000000000000000000000000){
+            _id = createIdentifier(_addresses);
+            d = detailsByContract[_id];
+            d.addresses = _addresses;
+            d.confirmed = [msg.sender];
+            d.status = 0;
+            d.date = block.timestamp;
+            d.agreement = _agreement;
 
-        if(!contractExists){
-            contractNumber = createUniqueKey(_contractNumber);
-
-            contractDetails.addrs = _addrs;
-            contractDetails.confirmedAddrs = [msg.sender];
-            contractDetails.status = _status;
-            contractDetails.confirmation = 0;
-            contractDetails.date = block.timestamp;
-            contractDetails.agreement = _agreement;
-            
         }else{
-            contractNumber = _contractNumber;
+            d = detailsByContract[_id];
 
-            contractDetails = getDetailsByContractNumber(_contractNumber);
-            
-            if(!contains(msg.sender, contractDetails.confirmedAddrs)){
-                contractDetails.confirmedAddrs.push(msg.sender);
+            if(areArraysEqual(d.addresses, d.confirmed)){
+                d.status = 1;
             }
-            if(areArraysEqual(contractDetails.addrs, contractDetails.confirmedAddrs)){
-                contractDetails.confirmation = 1;
+
+            if(!addressInArray(d.confirmed, msg.sender)) {
+                d.confirmed.push(msg.sender);
             }
+
+            if(!bytesInArray(contractsByAddres[msg.sender], _id)){
+                contractsByAddres[msg.sender].push(_id);  
+            }       
+               
 
         }
 
-        setContractDetailsMapping(contractNumber, contractDetails);
-        setAddrsContractsMapping(msg.sender, contractNumber);
+            detailsByContract[_id] = d;
+            
+        
+        
         
     }
 
-    //////////////////////////////////////////////////////////////////////////
-
-    // Mapping ContractDetails to contractNumber
-    mapping(bytes32 => ContractDetails) private contractDetailsMapping;
-
-     // Getter functions
-    function getDetailsByContractNumber(bytes32 _contractNumber) public view returns (ContractDetails memory) {
-        return contractDetailsMapping[_contractNumber];
+    function createIdentifier(address[] memory uniqueAddresses) private pure returns (bytes32) {
+        return keccak256(abi.encodePacked(uniqueAddresses));
     }
 
-    // Setter functions
-    function setContractDetailsMapping(bytes32 key, ContractDetails memory value) private {
-        contractDetailsMapping[key] = value;
-    }
-
-    //////////////////////////////////////////////////////////////////////////
-
-    // Mapping an address to a list of contracts
-    mapping(address => bytes32[]) private addrsContractsMapping;
-   
-    // Getter functions
-     function getAddrsContractsMapping(address _address) public view returns (bytes32[] memory) {
-        return addrsContractsMapping[_address];
-    }
-
-    // Setter functions
-    function setAddrsContractsMapping(address _address, bytes32 _value) private {
-        addrsContractsMapping[_address].push(_value);
-    }
-
-
-    //////////////////////////////////////////////////////////////////////////
-
-    function createContractNumber() private view returns (bytes32) {
-        return keccak256(abi.encodePacked(block.timestamp, msg.sender));
-    }
-
-    function createUniqueKey(bytes32 _contractNumber) private view returns(bytes32){
-        bytes32 nullValue = 0x0000000000000000000000000000000000000000000000000000000000000000;
-        return _contractNumber != nullValue ? _contractNumber: createContractNumber();
-    }
-
-    function contains(address addr, address[] memory array) private pure returns (bool) {
+    function bytesInArray(bytes32[] memory array, bytes32 value) private pure returns (bool) {
         for (uint i = 0; i < array.length; i++) {
-            if (array[i] == addr) {
+            if (array[i] == value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function addressInArray(address[] memory array, address value) private pure returns (bool) {
+        for (uint i = 0; i < array.length; i++) {
+            if (array[i] == value) {
                 return true;
             }
         }
@@ -141,8 +115,11 @@ contract Marriage {
         if (i < right)
             quickSort(arr, i, right);
     }
-    
+
+
+
 }
+
 
 // TEST DATA
 
@@ -153,6 +130,6 @@ contract Marriage {
  status 1 (married)
  agreement MarriageTest
 
-0x0000000000000000000000000000000000000000000000000000000000000000, [0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2], 1, "MarriageTest"
+0x0000000000000000000000000000000000000000000000000000000000000000, [0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2], "MarriageTest"
  
  */
