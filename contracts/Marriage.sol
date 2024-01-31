@@ -15,15 +15,25 @@ contract Marriage {
     Details d;
     
 
-    mapping(address => bytes32[]) public contractsByAddres;
-    mapping(bytes32 => Details) public detailsByContract;
+    mapping(bytes32 => Details) private detailsById;
+    mapping(address => bytes32[]) private idsByAddress;
+
+   
+
+    function getDetails(bytes32 _id) public view returns (Details memory){
+        return detailsById[_id];
+    }
+    
+    function getIds(address _address) public view returns (bytes32[] memory){
+        return idsByAddress[_address];
+    }
 
 
     function createContract(bytes32 _id, address[] memory _addresses, string memory _agreement ) public  {
 
         if(_id == 0x0000000000000000000000000000000000000000000000000000000000000000){
             _id = createIdentifier(_addresses);
-            d = detailsByContract[_id];
+            d = detailsById[_id];
             d.addresses = _addresses;
             d.confirmed = [msg.sender];
             d.status = 0;
@@ -31,7 +41,7 @@ contract Marriage {
             d.agreement = _agreement;
 
         }else{
-            d = detailsByContract[_id];
+            d = detailsById[_id];
 
             if(areArraysEqual(d.addresses, d.confirmed)){
                 d.status = 1;
@@ -39,16 +49,14 @@ contract Marriage {
 
             if(!addressInArray(d.confirmed, msg.sender)) {
                 d.confirmed.push(msg.sender);
-            }
-
-            if(!bytesInArray(contractsByAddres[msg.sender], _id)){
-                contractsByAddres[msg.sender].push(_id);  
-            }       
+            }   
                
-
         }
+            if(!bytesInArray(idsByAddress[msg.sender], _id)){
+                idsByAddress[msg.sender].push(_id);  
+            }   
 
-            detailsByContract[_id] = d;
+            detailsById[_id] = d;
             
         
         

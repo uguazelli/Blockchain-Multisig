@@ -8,30 +8,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "contractsByAddres",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "bytes32",
 						"name": "_id",
 						"type": "bytes32"
@@ -56,26 +32,62 @@
 				"inputs": [
 					{
 						"internalType": "bytes32",
-						"name": "",
+						"name": "_id",
 						"type": "bytes32"
 					}
 				],
-				"name": "detailsByContract",
+				"name": "getDetails",
 				"outputs": [
 					{
-						"internalType": "uint8",
-						"name": "status",
-						"type": "uint8"
-					},
+						"components": [
+							{
+								"internalType": "address[]",
+								"name": "addresses",
+								"type": "address[]"
+							},
+							{
+								"internalType": "address[]",
+								"name": "confirmed",
+								"type": "address[]"
+							},
+							{
+								"internalType": "uint8",
+								"name": "status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "date",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "agreement",
+								"type": "string"
+							}
+						],
+						"internalType": "struct Marriage.Details",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "date",
-						"type": "uint256"
-					},
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "getIds",
+				"outputs": [
 					{
-						"internalType": "string",
-						"name": "agreement",
-						"type": "string"
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
 					}
 				],
 				"stateMutability": "view",
@@ -110,11 +122,11 @@
 	},
 	"sources": {
 		"contracts/Marriage.sol": {
-			"keccak256": "0xffe89f3dc378ac0a9ceecf5e91603404f60fab311dd696d1344201a3f789fb28",
+			"keccak256": "0x8ecd2ab05c7b6188d4e97cd7a9ecc04557e49ce78a68cf5016df2c809d7d97fc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fc74c53597e20c6245ce010dbe1048e8102341b8083c998bcd410e1284ea194c",
-				"dweb:/ipfs/QmTJRbAcPy4jysDq16Q9YqXh25ZM4zbGmFY445pRW4XUdE"
+				"bzz-raw://f8d01e01375261ab2b7e52d584a593ee816cee88998d55ece1d71ef30d5c7f31",
+				"dweb:/ipfs/QmSEouRQFV13HwtTP4yShngc4qUbJThVv3XTdoFDU62aug"
 			]
 		}
 	},
