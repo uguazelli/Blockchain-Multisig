@@ -3,6 +3,18 @@ pragma solidity ^0.8.22;
 
 library Helper{
 
+    // A function to check if the caller is an owner
+    function isOwner(address[] memory participants) internal view returns (bool){
+        bool owner = false;
+        for (uint i = 0; i < participants.length; i++) {
+            if (participants[i] == msg.sender) {
+                owner = true;
+                break;
+            }
+        }
+        return owner;
+    }
+
     function createIdentifier(address[] memory uniqueAddresses) internal pure returns (bytes32) {
         return keccak256(abi.encodePacked(uniqueAddresses));
     }

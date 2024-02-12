@@ -1,0 +1,164 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_id",
+						"type": "bytes32"
+					}
+				],
+				"name": "confirmContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_participants",
+						"type": "address[]"
+					},
+					{
+						"internalType": "string",
+						"name": "_agreement",
+						"type": "string"
+					}
+				],
+				"name": "createContract",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_id",
+						"type": "bytes32"
+					}
+				],
+				"name": "getDetails",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address[]",
+								"name": "participants",
+								"type": "address[]"
+							},
+							{
+								"internalType": "address[]",
+								"name": "confirmed",
+								"type": "address[]"
+							},
+							{
+								"internalType": "uint8",
+								"name": "contractStatus",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "date",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "agreement",
+								"type": "string"
+							}
+						],
+						"internalType": "struct Multisig.Details",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "getIds",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Marriage.sol": "Multisig"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Helper.sol": {
+			"keccak256": "0x1c5f58da0b18103a538ef5c719aeca1f63010ac9f6000f7926cc4aa0c6f266c4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a99398df428cedaa6d0c5bb451cddba9ccfc81ed53efe42746c93a23248f5f54",
+				"dweb:/ipfs/QmT2hCAbwUZLk74Znyt4ddDFpwDRtPHo2mA7ycGwNTEGHg"
+			]
+		},
+		"contracts/Marriage.sol": {
+			"keccak256": "0xa1081f3af1a3d870d5cb8fb607314bf8dd3f3a5c50397e5ce2baf4133d1953d0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c23a4feda939bceaaf84ac90b5dfa1386336712baef78f06c884f086185cd35",
+				"dweb:/ipfs/Qmatt9X4uEzTjpBPNv1NYcWNJ4NihCm5rmfbpd68BvdPBD"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x7434453e6d3b7d0e5d0eb7846ffdbc27f0ccf3b163591263739b628074dc103a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://49355f780520494d1d5a0f01858385e51bb5280ce0ecfb960f16995065dca395",
+				"dweb:/ipfs/QmSwJ6C5QLz6xKeQZS8wbwjU1KxRFTYfwbGmtzisd5sRW4"
+			]
+		}
+	},
+	"version": 1
+}
