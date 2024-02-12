@@ -4,10 +4,10 @@ pragma solidity ^0.8.22;
 import "hardhat/console.sol";
 import "./Helper.sol";
 
-contract Marriage {
+contract Multisig {
 
     struct Details{
-        address[] addresses;
+        address[] participants;
         address[] confirmed;
         uint8 status;
         uint256 date;
@@ -16,51 +16,57 @@ contract Marriage {
 
     Details d;
 
-    mapping(bytes32 => Details) private detailsById;
-    mapping(address => bytes32[]) private idsByAddress;
+    mapping(bytes32 => Details) private detailsMapping;
+    mapping(address => bytes32[]) private contractsMapping;
 
 
     function getDetails(bytes32 _id) public view returns (Details memory){
-        return detailsById[_id];
+        return detailsMapping[_id];
     }
     
     function getIds(address _address) public view returns (bytes32[] memory){
-        return idsByAddress[_address];
+        return contractsMapping[_address];
     }
 
 
-    function createContract(bytes32 _id, address[] memory _addresses, string memory _agreement ) public {
+    function createContract(address[] memory _participants, string memory _agreement ) public {
 
-        if(_id == 0x0000000000000000000000000000000000000000000000000000000000000000){
-            _id = Helper.createIdentifier(_addresses);
-            d = detailsById[_id];
-            d.addresses = _addresses;
-            d.confirmed = [msg.sender];
-            d.status = 0;
-            d.date = block.timestamp;
-            d.agreement = _agreement;
+        bytes32 id  = Helper.createIdentifier(_participants);
+        d = detailsMapping[id];
+        d.participants = _participants;
+        d.confirmed = [msg.sender];
+        d.status = 0;
+        d.date = block.timestamp;
+        d.agreement = _agreement;
 
-        }else{
-            d = detailsById[_id];
+        contractsMapping[msg.sender].push(id);  
+        detailsMapping[id] = d;   
 
+    }
+
+    function confirmContract(bytes32 _id) public {
+      
+            d = detailsMapping[_id];
             require(d.status == 0, "Status 1 cannot be modified.");
 
+            // Push msg.sender to confirmed array
             if(!Helper.addressInArray(d.confirmed, msg.sender)) {
                 d.confirmed.push(msg.sender);
+            }
+
+            // If msg.sender not in the mapping, push it
+            if(!Helper.bytesInArray(contractsMapping[msg.sender], _id)){
+                contractsMapping[msg.sender].push(_id);  
             }   
             
-            if(Helper.areArraysEqual(d.addresses, d.confirmed)){
+            // If confirmed matches participants, change staus
+            if(Helper.areArraysEqual(d.participants, d.confirmed)){
                 d.status = 1;
             }
                
-        }
-            if(!Helper.bytesInArray(idsByAddress[msg.sender], _id)){
-                idsByAddress[msg.sender].push(_id);  
-            }   
-
-            detailsById[_id] = d;        
+            // Update details
+            detailsMapping[_id] = d;        
     }
-
 
 }
 
