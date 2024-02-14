@@ -6,6 +6,50 @@
 	"output": {
 		"abi": [
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "address[]",
+						"name": "confirmations",
+						"type": "address[]"
+					}
+				],
+				"name": "AgreementConfirmed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "address[]",
+						"name": "participants",
+						"type": "address[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "agreement",
+						"type": "string"
+					}
+				],
+				"name": "AgreementCreated",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "bytes32",
@@ -144,11 +188,11 @@
 			]
 		},
 		"contracts/Marriage.sol": {
-			"keccak256": "0xa1081f3af1a3d870d5cb8fb607314bf8dd3f3a5c50397e5ce2baf4133d1953d0",
+			"keccak256": "0x13c553f5055fb29d63088d3b836bf074e75566aaa7486cafcfa76bb7ae66bc1f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7c23a4feda939bceaaf84ac90b5dfa1386336712baef78f06c884f086185cd35",
-				"dweb:/ipfs/Qmatt9X4uEzTjpBPNv1NYcWNJ4NihCm5rmfbpd68BvdPBD"
+				"bzz-raw://2b03284f3a50b96dd2502e2e0fc37b73eba94a6fd6df0b1c2e092ffe35d2149c",
+				"dweb:/ipfs/QmYQYkVi758Vq7gfSBEMwEXgRBBupCu2xpsUVT9mrRLJ4p"
 			]
 		},
 		"hardhat/console.sol": {
