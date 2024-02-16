@@ -43,19 +43,23 @@ contract Multisig {
      
         bytes32 id  = Helper.createIdentifier(_participants);
 
-        details.participants = _participants;
-        details.confirmed = [msg.sender];
-        details.contractStatus = 0;
-        details.date = block.timestamp;
-        details.agreement = _agreement;
+        bool idExists = Helper.bytesInArray(contractsMapping[msg.sender], id);
 
-        contractsMapping[msg.sender].push(id);  
-        detailsMapping[id] = details;
+        if(!idExists){
+            details.participants = _participants;
+            details.confirmed = [msg.sender];
+            details.contractStatus = 0;
+            details.date = block.timestamp;
+            details.agreement = _agreement;
 
-        emit AgreementCreated(id, _participants, _agreement);
+            contractsMapping[msg.sender].push(id);  
+            detailsMapping[id] = details;
+
+            emit AgreementCreated(id, _participants, _agreement);
+
+        }
 
         return id; 
-
     }
 
 
@@ -99,7 +103,7 @@ contract Multisig {
  [0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2], "Multisig Test"
 
 
- Contract Address
- 0xabb4103aee195c0e27dc0712197db7207063b96e
+ Contract Address Metamask
+ 0x155a7a71349cc18bb17edf180044d89794faf39f
  
  */
