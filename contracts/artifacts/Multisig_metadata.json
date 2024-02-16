@@ -165,7 +165,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Marriage.sol": "Multisig"
+			"contracts/Multisig.sol": "Multisig"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -187,12 +187,12 @@
 				"dweb:/ipfs/QmT2hCAbwUZLk74Znyt4ddDFpwDRtPHo2mA7ycGwNTEGHg"
 			]
 		},
-		"contracts/Marriage.sol": {
-			"keccak256": "0xe5f163a8c684253b1a23555b576c7150fce2756ad0b437c1568d462e36795796",
+		"contracts/Multisig.sol": {
+			"keccak256": "0x4016800267a68e3949b1a50667a1d0ce0a356bc67a75ac8afd4c84450b399ee3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b6ad5cf8adfe16c226375f49a72bed5f0da252b0e58601db76f9e8fc4886313e",
-				"dweb:/ipfs/Qmey4413Fp3ex6RF5c2sBgeb1oBNwgdU99ARhzovv3qxyY"
+				"bzz-raw://f9b9bc9bc7a5887495e6664e7ad5b7e3abda2d525d3a7a31306f9094c6caa3f6",
+				"dweb:/ipfs/QmaqCiYz9MyuswR4DjrSQKs7GGEomYBkruF86a1NmCFmYx"
 			]
 		},
 		"hardhat/console.sol": {
